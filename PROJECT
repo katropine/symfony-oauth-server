@@ -1,0 +1,33 @@
+OAuth setup based on:
+http://blog.tankist.de/blog/2013/07/17/oauth2-explained-part-2-setting-up-oauth2-with-symfony2-using-fosoauthserverbundle/
+
+
+1. Create a client:
+php app/console acme:oauth-server:client:create --redirect-uri="http://oauth.local/app_dev.php/api/test" --grant-type="authorization_code" --grant-type="password" --grant-type="refresh_token" --grant-type="token" --grant-type="client_credentials"
+
+
+2. Login:
+oauth.local/app_dev.php/oauth/v2/auth?client_id=CLIENT_ID&response_type=code&redirect_uri=http://oauth.local/app_dev.php/api/test
+
+http://localhost/test/test4.php => CODE
+
+3. Get token:
+oauth.local/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri=http://oauth.local/app_dev.php/api/test&code=CODE	
+oauth.local/app_dev.php/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=client_credentials
+
+oauth.local/app_dev.php/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri=http://localhost/test/test4.php&code=CODE
+
+
+3.1. Implicit Grant:
+
+oauth.local/oauth/v2/auth?client_id=CLIENT_ID&redirect_uri=http://oauth.local/app_dev.php/api/test&response_type=token
+
+
+4. Get resource:
+oauth.local/app_dev.php/api/articles?access_token=TOKEN
+
+
+5. Refresh flow
+oauth.local/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
+
+response: new access_token
