@@ -3,7 +3,7 @@ http://blog.tankist.de/blog/2013/07/17/oauth2-explained-part-2-setting-up-oauth2
 
 
 1. Create a client:
-php app/console acme:oauth-server:client:create --redirect-uri="http://oauth.local/app_dev.php/api/test" --grant-type="authorization_code" --grant-type="password" --grant-type="refresh_token" --grant-type="token" --grant-type="client_credentials"
+php app/console katropine:oauth-server:client:create --redirect-uri="http://oauth.local/app_dev.php/api/test" --grant-type="authorization_code" --grant-type="password" --grant-type="refresh_token" --grant-type="token" --grant-type="client_credentials"
 
 
 2. Login:
@@ -12,7 +12,7 @@ oauth.local/app_dev.php/oauth/v2/auth?client_id=CLIENT_ID&response_type=code&red
 http://localhost/test/test4.php => CODE
 
 3. Get token:
-oauth.local/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri=http://oauth.local/app_dev.php/api/test&code=CODE	
+oauth.local/app_dev.php/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri=http://oauth.local/app_dev.php/api/test&code=CODE	
 oauth.local/app_dev.php/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=client_credentials
 
 oauth.local/app_dev.php/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=authorization_code&redirect_uri=http://localhost/test/test4.php&code=CODE
@@ -31,3 +31,9 @@ oauth.local/app_dev.php/api/articles?access_token=TOKEN
 oauth.local/oauth/v2/token?client_id=CLIENT_ID&client_secret=CLIENT_SECRET&grant_type=refresh_token&refresh_token=REFRESH_TOKEN
 
 response: new access_token
+
+==============================================================================================================================================================
+
+Login and get access_token if you redirection to oauth server is not an option
+
+http://oauth.local/oauth/v2/token?client_id='+CLIENT_ID+'&client_secret='+CLIENT_SECRET+'&grant_type=password&username=kriss@test.com&password=test
