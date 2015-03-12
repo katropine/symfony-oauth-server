@@ -13,10 +13,10 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Acme\UserBundle\Entity\User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Katropine\OauthBundle\Repository\UserRepository")
+ * @ORM\MappedSuperclass
  */
 class User extends BaseUser implements UserInterface, \Serializable {
 

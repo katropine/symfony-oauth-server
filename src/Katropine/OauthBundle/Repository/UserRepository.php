@@ -8,12 +8,7 @@
  */
 
 namespace Katropine\OauthBundle\Repository;
-/**
-* Description of UserRepository
-*
-* @author Kriss
-* @since Jul 13, 2014
-*/
+
 use Doctrine\ORM\EntityRepository;
 
 class UserRepository extends EntityRepository {
